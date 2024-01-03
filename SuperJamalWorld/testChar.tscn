@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://tfc8rskm48bp"]
+
+[ext_resource type="Script" path="res://TestChar.cs" id="1_1x7v1"]
+[ext_resource type="PackedScene" uid="uid://vtgg3j6tdpmi" path="res://bulletFab.tscn" id="2_gv0kj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_f3anh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0x8o"]
+
+[sub_resource type="Gradient" id="Gradient_e6frc"]
+offsets = PackedFloat32Array(0.994012, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i2cx1"]
+gradient = SubResource("Gradient_e6frc")
+
+[node name="TestChar" type="CharacterBody2D" node_paths=PackedStringArray("bulletSpawn")]
+position = Vector2(359, 209)
+script = ExtResource("1_1x7v1")
+bulletFab = ExtResource("2_gv0kj")
+bulletSpawn = NodePath("BulletSpawn")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_f3anh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v0x8o")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9.625, 0)
+scale = Vector2(0.0732422, 3.5)
+texture = SubResource("GradientTexture1D_i2cx1")
+
+[node name="BulletSpawn" type="Marker2D" parent="."]
+position = Vector2(19, 0)
