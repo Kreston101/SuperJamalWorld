@@ -3,16 +3,21 @@ using System;
 
 public partial class TestChar : CharacterBody2D
 {
-	public float speed = 300.0f;
-	public int bulletsPerShot = 1;
-	public float damage = 1f;
-	public float fireDelay = 0.5f;
-	public int maxHealth = 10;
-	public int currentHealth = 10;
+	[Export] public float speed = 300.0f;
+	[Export] public int bulletsPerShot = 1;
+	[Export] public int damage = 1;
+	[Export] public float fireDelay = 0.5f;
+	[Export] public int maxHealth = 10;
+	public int health;
 
 	[Export] private PackedScene bulletFab;
 	[Export] private Marker2D bulletSpawn;
 	private float timer = 0f;
+
+	public override void _Ready()
+	{
+		health = maxHealth;
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -52,5 +57,14 @@ public partial class TestChar : CharacterBody2D
 		Node2D bullet = (Node2D)bulletFab.Instantiate();
 		AddSibling(bullet);
 		bullet.Position = bulletSpawn.GlobalPosition;
+		BulletFab bulletScript = bullet as BulletFab;
+		bulletScript.damage = damage;
+		bulletScript.direction = (GetGlobalMousePosition() - bullet.GlobalPosition).Normalized();
+	}
+
+	public void TakeDamage(int damageRecieved)
+	{
+		GD.Print("le test screaming");
+		health -= damageRecieved; 
 	}
 }

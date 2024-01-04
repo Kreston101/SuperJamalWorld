@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://by4onma5k0sar"]
+
+[ext_resource type="PackedScene" uid="uid://tfc8rskm48bp" path="res://Scenes/testChar.tscn" id="1_x2oup"]
+[ext_resource type="PackedScene" uid="uid://crah3scmueey1" path="res://Scenes/enemy.tscn" id="2_vd8fd"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TestChar" parent="." instance=ExtResource("1_x2oup")]
+position = Vector2(350, 99)
+
+[node name="Enemy" parent="." instance=ExtResource("2_vd8fd")]
+position = Vector2(572, 313)
+maxHealth = 1
+
+[node name="Enemy2" parent="." instance=ExtResource("2_vd8fd")]
+position = Vector2(130, 365)
+maxHealth = 1
+
+[node name="Enemy3" parent="." instance=ExtResource("2_vd8fd")]
+position = Vector2(721, 183)
+maxHealth = 1
