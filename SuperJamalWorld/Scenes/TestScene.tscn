@@ -1,33 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://by4onma5k0sar"]
+[gd_scene load_steps=6 format=3 uid="uid://by4onma5k0sar"]
 
+[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="1_squy0"]
 [ext_resource type="PackedScene" uid="uid://tfc8rskm48bp" path="res://Scenes/testChar.tscn" id="1_x2oup"]
 [ext_resource type="PackedScene" uid="uid://cynfwtxj6qgec" path="res://Scenes/shooter.tscn" id="3_3jeu0"]
 [ext_resource type="PackedScene" uid="uid://dsrexul2ruvdq" path="res://Scenes/enemy_big.tscn" id="3_6poxn"]
 [ext_resource type="PackedScene" uid="uid://crah3scmueey1" path="res://Scenes/enemy.tscn" id="4_j77o0"]
 
-[node name="Node2D" type="Node2D"]
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_squy0")
+enemy = ExtResource("4_j77o0")
+shooter = ExtResource("3_3jeu0")
+bigEnemy = ExtResource("3_6poxn")
+spawnDistance = 750.0
+spawnDelay = 1.0
+waveSize = 3
 
 [node name="TestChar" parent="." instance=ExtResource("1_x2oup")]
-position = Vector2(554, 392)
 
-[node name="Shooter" parent="." instance=ExtResource("3_3jeu0")]
-position = Vector2(515, -113)
-scale = Vector2(1.09461, 1.0835)
-
-[node name="EnemyBig" parent="." instance=ExtResource("3_6poxn")]
-position = Vector2(-160, 273)
-
-[node name="Enemy" parent="." instance=ExtResource("4_j77o0")]
-position = Vector2(1243, 266)
-
-[node name="EnemyBig2" parent="." instance=ExtResource("3_6poxn")]
-position = Vector2(-166, 389)
-
-[node name="Enemy2" parent="." instance=ExtResource("4_j77o0")]
-position = Vector2(1338, 315)
-
-[node name="Enemy3" parent="." instance=ExtResource("4_j77o0")]
-position = Vector2(1327, 401)
-
-[node name="Shooter2" parent="." instance=ExtResource("3_3jeu0")]
-position = Vector2(516, 707)
+[node name="Camera2D" type="Camera2D" parent="TestChar"]

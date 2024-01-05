@@ -8,12 +8,14 @@ public partial class EnemyBig : CharacterBody2D
 	[Export] public int damage;
 	[Export] public float speed;
 
+	private GameManager gm;
 	private CharacterBody2D player;
 	private Vector2 direction;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		gm = (GameManager)GetParent().GetScript();
 		health = maxHealth;
 		player = (CharacterBody2D)GetParent().GetNodeOrNull("TestChar");
 	}
@@ -26,6 +28,7 @@ public partial class EnemyBig : CharacterBody2D
 
 		if (health <= 0)
 		{
+			gm.killCount++;
 			QueueFree();
 		}
 	}
