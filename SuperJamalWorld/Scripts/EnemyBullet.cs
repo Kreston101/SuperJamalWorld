@@ -1,8 +1,7 @@
 using Godot;
 using System;
-using static System.Net.Mime.MediaTypeNames;
 
-public partial class BulletFab : Area2D
+public partial class EnemyBullet : Area2D
 {
 	[Export] public float speed;
 	public int damage;
@@ -21,6 +20,7 @@ public partial class BulletFab : Area2D
 	{
 		Position += direction * speed * (float)delta;
 		lifetime += (float)delta;
+		LookAt(direction);
 		if (lifetime > maxLifetime)
 		{
 			QueueFree();
@@ -29,25 +29,11 @@ public partial class BulletFab : Area2D
 
 	private void OnBodyEnteredSig(Node2D body)
 	{
-		if (body.IsInGroup("Enemy"))
+		if (body.IsInGroup("Player"))
 		{
-			Enemy enemyScript = body as Enemy;
-			enemyScript.TakeDamage(damage);
-			GD.Print("hit!");
-			QueueFree();
-		}
-		if (body.IsInGroup("Shooter"))
-		{
-			Shooter enemyScript = body as Shooter;
-			enemyScript.TakeDamage(damage);
-			GD.Print("hit!");
-			QueueFree();
-		}
-		if (body.IsInGroup("EnemyBig"))
-		{
-			EnemyBig enemyScript = body as EnemyBig;
-			enemyScript.TakeDamage(damage);
-			GD.Print("hit!");
+			TestChar playerScript = body as TestChar;
+			playerScript.TakeDamage(damage);
+			GD.Print("hit player!");
 			QueueFree();
 		}
 	}

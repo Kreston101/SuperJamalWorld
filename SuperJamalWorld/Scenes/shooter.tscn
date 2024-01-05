@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cynfwtxj6qgec"]
+
+[ext_resource type="Script" path="res://Scripts/Shooter.cs" id="1_7qrad"]
+[ext_resource type="PackedScene" uid="uid://dpu4lwxh6or0w" path="res://Scenes/enemy_bullet.tscn" id="2_r51ah"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ic7h4"]
+size = Vector2(30, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e4yo4"]
+
+[sub_resource type="Gradient" id="Gradient_06wqh"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_agajd"]
+gradient = SubResource("Gradient_06wqh")
+fill_from = Vector2(1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exdod"]
+size = Vector2(30, 30)
+
+[node name="Shooter" type="CharacterBody2D" node_paths=PackedStringArray("bulletSpawn") groups=["Shooter"]]
+script = ExtResource("1_7qrad")
+speed = 200.0
+damage = 1
+fireDelay = 1.0
+maxHealth = 1
+bulletFab = ExtResource("2_r51ah")
+bulletSpawn = NodePath("Marker2D")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ic7h4")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
+scale = Vector2(30, 30)
+mesh = SubResource("BoxMesh_e4yo4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(14.5, 0)
+scale = Vector2(0.453125, 0.125)
+texture = SubResource("GradientTexture2D_agajd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_exdod")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(29, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="OnBodyEnteredSig"]

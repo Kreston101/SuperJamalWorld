@@ -1,21 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://by4onma5k0sar"]
+[gd_scene load_steps=5 format=3 uid="uid://by4onma5k0sar"]
 
 [ext_resource type="PackedScene" uid="uid://tfc8rskm48bp" path="res://Scenes/testChar.tscn" id="1_x2oup"]
-[ext_resource type="PackedScene" uid="uid://crah3scmueey1" path="res://Scenes/enemy.tscn" id="2_vd8fd"]
+[ext_resource type="PackedScene" uid="uid://cynfwtxj6qgec" path="res://Scenes/shooter.tscn" id="3_3jeu0"]
+[ext_resource type="PackedScene" uid="uid://dsrexul2ruvdq" path="res://Scenes/enemy_big.tscn" id="3_6poxn"]
+[ext_resource type="PackedScene" uid="uid://crah3scmueey1" path="res://Scenes/enemy.tscn" id="4_j77o0"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="TestChar" parent="." instance=ExtResource("1_x2oup")]
-position = Vector2(350, 99)
+position = Vector2(554, 392)
 
-[node name="Enemy" parent="." instance=ExtResource("2_vd8fd")]
-position = Vector2(572, 313)
-maxHealth = 1
+[node name="Shooter" parent="." instance=ExtResource("3_3jeu0")]
+position = Vector2(515, -113)
+scale = Vector2(1.09461, 1.0835)
 
-[node name="Enemy2" parent="." instance=ExtResource("2_vd8fd")]
-position = Vector2(130, 365)
-maxHealth = 1
+[node name="EnemyBig" parent="." instance=ExtResource("3_6poxn")]
+position = Vector2(-160, 273)
 
-[node name="Enemy3" parent="." instance=ExtResource("2_vd8fd")]
-position = Vector2(721, 183)
-maxHealth = 1
+[node name="Enemy" parent="." instance=ExtResource("4_j77o0")]
+position = Vector2(1243, 266)
+
+[node name="EnemyBig2" parent="." instance=ExtResource("3_6poxn")]
+position = Vector2(-166, 389)
+
+[node name="Enemy2" parent="." instance=ExtResource("4_j77o0")]
+position = Vector2(1338, 315)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_j77o0")]
+position = Vector2(1327, 401)
+
+[node name="Shooter2" parent="." instance=ExtResource("3_3jeu0")]
+position = Vector2(516, 707)

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsrexul2ruvdq"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyBig.cs" id="1_v4lkb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7x7dy"]
+size = Vector2(74, 74)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5b8cl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54oy2"]
+size = Vector2(74, 74)
+
+[node name="EnemyBig" type="CharacterBody2D" groups=["EnemyBig"]]
+script = ExtResource("1_v4lkb")
+maxHealth = 5
+damage = 2
+speed = 150.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7x7dy")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(75, 75)
+mesh = SubResource("BoxMesh_5b8cl")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_54oy2")
+
+[connection signal="body_entered" from="Area2D" to="." method="OnBodyEnteredSig"]

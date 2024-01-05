@@ -14,8 +14,7 @@ offsets = PackedFloat32Array(0.994012, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_i2cx1"]
 gradient = SubResource("Gradient_e6frc")
 
-[node name="TestChar" type="CharacterBody2D" node_paths=PackedStringArray("bulletSpawn")]
-position = Vector2(585, 299)
+[node name="TestChar" type="CharacterBody2D" node_paths=PackedStringArray("bulletSpawn") groups=["Player"]]
 script = ExtResource("1_h278n")
 maxHealth = 5
 bulletFab = ExtResource("2_8a68j")
