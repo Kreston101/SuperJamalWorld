@@ -8,12 +8,12 @@
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_squy0")
-enemy = ExtResource("4_j77o0")
-shooter = ExtResource("3_3jeu0")
-bigEnemy = ExtResource("3_6poxn")
+enemyFab = ExtResource("4_j77o0")
+shooterFab = ExtResource("3_3jeu0")
+bigEnemyFab = ExtResource("3_6poxn")
 spawnDistance = 750.0
-spawnDelay = 1.0
-waveSize = 3
+spawnDelay = 2.0
+waveSize = 1
 
 [node name="TestChar" parent="." instance=ExtResource("1_x2oup")]
 

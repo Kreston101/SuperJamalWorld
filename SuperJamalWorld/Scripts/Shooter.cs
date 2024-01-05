@@ -15,14 +15,15 @@ public partial class Shooter : CharacterBody2D
 	private float timer = 0f;
 	private CharacterBody2D player;
 	private Vector2 direction;
-	private GameManager gm;
+	private Node2D gm;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		gm = (GameManager)GetParent().GetScript();
-		health = maxHealth;
 		player = (CharacterBody2D)GetParent().GetNodeOrNull("TestChar");
+		gm = (Node2D)GetParent();
+		GD.Print(gm);
+		health = maxHealth;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,7 +45,8 @@ public partial class Shooter : CharacterBody2D
 
 		if (health <= 0)
 		{
-			gm.killCount++;
+			GameManager gmScript = gm as GameManager;
+			gmScript.killCount++;
 			QueueFree();
 		}
 	}

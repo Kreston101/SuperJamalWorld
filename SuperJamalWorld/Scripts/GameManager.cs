@@ -42,20 +42,23 @@ public partial class GameManager : Node2D
 	{
 		RandomNumberGenerator rng = new RandomNumberGenerator();
 		int whatToSpawn = rng.RandiRange(0, 9); //0-1 Big; 2-4 Shooter; rest normal 
-		if (whatToSpawn > 4) 
+		if (whatToSpawn <= 4) 
 		{
 			Node2D enemy = (Node2D)enemyFab.Instantiate();
 			AddChild(enemy);
+			//enemy.Position += (GetGlobalMousePosition() - player.GlobalPosition).Normalized() * spawnDistance;
 		}
-		else if (whatToSpawn <=4 && whatToSpawn > 1) 
+		else if (whatToSpawn > 4 && whatToSpawn <= 7) 
 		{
-            Node2D enemy = (Node2D)shooterFab.Instantiate();
-            AddChild(enemy);
-        }
-		else
+			Node2D enemy = (Node2D)shooterFab.Instantiate();
+			AddChild(enemy);
+			//enemy.Position += (GetGlobalMousePosition() - player.GlobalPosition).Normalized() * spawnDistance;
+		}
+		else if (whatToSpawn > 7 && whatToSpawn <= 9)
 		{
-            Node2D enemy = (Node2D)bigEnemyFab.Instantiate();
-            AddChild(enemy);
-        }
+			Node2D enemy = (Node2D)bigEnemyFab.Instantiate();
+			AddChild(enemy);
+			//enemy.Position += (GetGlobalMousePosition() - player.GlobalPosition).Normalized() * spawnDistance;
+		}
 	}
 }
