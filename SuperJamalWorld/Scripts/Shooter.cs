@@ -9,6 +9,7 @@ public partial class Shooter : CharacterBody2D
 	[Export] public float fireDelay;
 	[Export] public int maxHealth;
 	public int health;
+	[Export] public PackedScene powerPelletFab;
 
 	[Export] private PackedScene bulletFab;
 	[Export] private Marker2D bulletSpawn;
@@ -47,6 +48,7 @@ public partial class Shooter : CharacterBody2D
 		{
 			GameManager gmScript = gm as GameManager;
 			gmScript.killCount++;
+			SpawnPellet();
 			QueueFree();
 		}
 	}
@@ -74,5 +76,17 @@ public partial class Shooter : CharacterBody2D
 	{
 		GD.Print("recieved damage");
 		health -= damageRecieved;
+	}
+
+	public void SpawnPellet()
+	{
+		RandomNumberGenerator rng = new RandomNumberGenerator();
+		int chance = rng.RandiRange(0, 9);
+		if (chance > 7)
+		{
+			Node2D powerPellet = (Node2D)powerPelletFab.Instantiate();
+			AddSibling(powerPellet);
+			powerPellet.Position = Position;
+		}
 	}
 }

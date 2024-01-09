@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cynfwtxj6qgec"]
+[gd_scene load_steps=9 format=3 uid="uid://cynfwtxj6qgec"]
 
 [ext_resource type="Script" path="res://Scripts/Shooter.cs" id="1_7qrad"]
+[ext_resource type="PackedScene" uid="uid://br3t3m78rmkxu" path="res://Scenes/power_pellet.tscn" id="2_5ujmd"]
 [ext_resource type="PackedScene" uid="uid://dpu4lwxh6or0w" path="res://Scenes/enemy_bullet.tscn" id="2_r51ah"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ic7h4"]
@@ -23,6 +24,7 @@ speed = 200.0
 damage = 1
 fireDelay = 1.0
 maxHealth = 1
+powerPelletFab = ExtResource("2_5ujmd")
 bulletFab = ExtResource("2_r51ah")
 bulletSpawn = NodePath("Marker2D")
 

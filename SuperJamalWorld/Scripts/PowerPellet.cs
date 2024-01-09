@@ -5,7 +5,7 @@ public partial class PowerPellet : Area2D
 {
 	public int damageBuff = 1;
 	public float speedBuff = 100f;
-	public float fireRateBuff = 0.25f;
+	public float fireRateBuff = 0.1f;
 
 	[Export] public bool isDamageBuff = false;
 	[Export] public bool isSpeedBuff = false;

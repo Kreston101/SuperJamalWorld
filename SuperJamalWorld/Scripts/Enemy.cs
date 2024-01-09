@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Channels;
 
 public partial class Enemy : CharacterBody2D
 {
@@ -7,6 +8,7 @@ public partial class Enemy : CharacterBody2D
 	public int health;
 	[Export] public int damage;
 	[Export] public float speed;
+	[Export] public PackedScene powerPelletFab;
 
 	private Node2D gm;
 	private CharacterBody2D player;
@@ -31,6 +33,7 @@ public partial class Enemy : CharacterBody2D
 		{
 			GameManager gmScript = gm as GameManager;
 			gmScript.killCount++;
+			SpawnPellet();
 			QueueFree();
 		}
 	}
@@ -48,5 +51,17 @@ public partial class Enemy : CharacterBody2D
 	{
 		GD.Print("recieved damage");
 		health -= damageRecieved;
+	}
+
+	public void SpawnPellet()
+	{
+		RandomNumberGenerator rng = new RandomNumberGenerator();
+		int chance = rng.RandiRange(0,9);
+		if (chance > 8)
+		{
+			Node2D powerPellet = (Node2D)powerPelletFab.Instantiate();
+			AddSibling(powerPellet);
+			powerPellet.Position = Position;
+		}
 	}
 }

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsrexul2ruvdq"]
+[gd_scene load_steps=6 format=3 uid="uid://dsrexul2ruvdq"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyBig.cs" id="1_v4lkb"]
+[ext_resource type="PackedScene" uid="uid://br3t3m78rmkxu" path="res://Scenes/power_pellet.tscn" id="2_qf1mg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7x7dy"]
 size = Vector2(74, 74)
@@ -15,6 +16,7 @@ script = ExtResource("1_v4lkb")
 maxHealth = 5
 damage = 2
 speed = 150.0
+powerPelletFab = ExtResource("2_qf1mg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7x7dy")

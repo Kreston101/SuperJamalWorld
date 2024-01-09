@@ -13,6 +13,7 @@ public partial class GameManager : Node2D
 	[Export] public int waveSize;
 	public int killCount = 0;
 	public float timeInGame = 0f;
+	public bool buffWindowUp = false;
 
 	private float timer = 0;
 
@@ -35,6 +36,15 @@ public partial class GameManager : Node2D
 				SpawnEnemy();
 			}
 			timer = 0;
+		}
+
+		GetNode<UI>("UI").UpdateScore(killCount);
+		GetNode<UI>("UI").UpdateTime(timeInGame);
+
+		if (killCount % 5 == 0 && killCount !=0 && buffWindowUp == false)
+		{
+			buffWindowUp = true;
+			GetNode<UI>("UI").ShowButtons();
 		}
 	}
 
@@ -60,5 +70,26 @@ public partial class GameManager : Node2D
 			AddChild(enemy);
 			//enemy.Position += (GetGlobalMousePosition() - player.GlobalPosition).Normalized() * spawnDistance;
 		}
+	}
+
+	public void UpgradePlayer(int upgradeId)
+	{
+		switch(upgradeId)
+		{
+			case 0:
+				GetNode<TestChar>("TestChar").damage += 1;
+				break;
+			case 1:
+				GetNode<TestChar>("TestChar").speed += 50f;
+				break;
+			case 2:
+				float currentFireRate = GetNode<TestChar>("TestChar").fireDelay;
+				if(currentFireRate - 0.1f >= 0.1f)
+				{
+					GetNode<TestChar>("TestChar").fireDelay -= 0.1f;
+				}
+				break;
+		}
+		GetNode<UI>("UI").HideButtons();
 	}
 }
